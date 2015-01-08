@@ -1,0 +1,590 @@
+{
+    "package": "rpc",
+    "messages": [
+        {
+            "name": "TransUnit",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "Command",
+                    "name": "cmd",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "bytes",
+                    "name": "data",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "int32",
+                    "name": "flags",
+                    "id": 3
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "uint32",
+                    "name": "usn",
+                    "id": 4
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "UserLogInRequest",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "string",
+                    "name": "email",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "string",
+                    "name": "pass",
+                    "id": 2
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "device_id",
+                    "id": 3
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "string",
+                    "name": "unique_id",
+                    "id": 4
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "DistributionChannel",
+                    "name": "channel",
+                    "id": 5
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "client_version",
+                    "id": 6
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "UserLogInReply",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "Result",
+                    "name": "result",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "AccountInfo",
+                    "name": "account",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "uint32",
+                    "name": "registered_days",
+                    "id": 4
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "string",
+                    "name": "data_version",
+                    "id": 5
+                }
+            ],
+            "enums": [
+                {
+                    "name": "Result",
+                    "values": [
+                        {
+                            "name": "OK",
+                            "id": 0
+                        },
+                        {
+                            "name": "RETRY",
+                            "id": 1
+                        },
+                        {
+                            "name": "NO_ACCOUNT",
+                            "id": 2
+                        },
+                        {
+                            "name": "WRONG_PASS",
+                            "id": 3
+                        },
+                        {
+                            "name": "BLOCKED",
+                            "id": 11
+                        },
+                        {
+                            "name": "BINDED",
+                            "id": 12
+                        }
+                    ],
+                    "options": {}
+                }
+            ],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "UserCreateRequest",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "email",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "pass",
+                    "id": 2
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "DistributionChannel",
+                    "name": "channel",
+                    "id": 3
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "client_version",
+                    "id": 4
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "device_id",
+                    "id": 5
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "UserCreateReply",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "Result",
+                    "name": "result",
+                    "id": 1
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "UserChangePassRequest",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "email",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "pass",
+                    "id": 2
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "string",
+                    "name": "pass_new",
+                    "id": 3
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "UserChangePassReply",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "Result",
+                    "name": "result",
+                    "id": 1
+                }
+            ],
+            "enums": [
+                {
+                    "name": "Result",
+                    "values": [
+                        {
+                            "name": "OK",
+                            "id": 0
+                        },
+                        {
+                            "name": "RETRY",
+                            "id": 1
+                        },
+                        {
+                            "name": "NO_ACCOUNT",
+                            "id": 2
+                        },
+                        {
+                            "name": "WRONG_PASS",
+                            "id": 3
+                        },
+                        {
+                            "name": "WRONG_OLD_PASS",
+                            "id": 4
+                        },
+                        {
+                            "name": "BLOCKED",
+                            "id": 11
+                        }
+                    ],
+                    "options": {}
+                }
+            ],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "GenericError",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "Error",
+                    "name": "error",
+                    "id": 1
+                }
+            ],
+            "enums": [
+                {
+                    "name": "Error",
+                    "values": [
+                        {
+                            "name": "ONLINE_OTHER_LOCATION",
+                            "id": 1
+                        }
+                    ],
+                    "options": {}
+                }
+            ],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "Countdown",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "int32",
+                    "name": "left_seconds",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "int32",
+                    "name": "value",
+                    "id": 2
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "AccountInfo",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "double",
+                    "name": "id",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "string",
+                    "name": "name",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "int32",
+                    "name": "diamond",
+                    "id": 5
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "int32",
+                    "name": "blue_cost",
+                    "id": 6
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "int32",
+                    "name": "yellow_cost",
+                    "id": 7
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "int32",
+                    "name": "taskProcess",
+                    "id": 8
+                },
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "Countdown",
+                    "name": "energy",
+                    "id": 9
+                },
+                {
+                    "rule": "repeated",
+                    "options": {},
+                    "type": "HeroInfo",
+                    "name": "hero",
+                    "id": 10
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "HeroInfo",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "double",
+                    "name": "id",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "int32",
+                    "name": "meta",
+                    "id": 2
+                },
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "int32",
+                    "name": "level",
+                    "id": 5
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "HeroUpgradeRequest",
+            "fields": [
+                {
+                    "rule": "required",
+                    "options": {},
+                    "type": "double",
+                    "name": "id",
+                    "id": 1
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        },
+        {
+            "name": "HeroUpgradeReply",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "options": {},
+                    "type": "HeroInfo",
+                    "name": "hero",
+                    "id": 1
+                }
+            ],
+            "enums": [],
+            "messages": [],
+            "options": {},
+            "oneofs": {}
+        }
+    ],
+    "enums": [
+        {
+            "name": "Command",
+            "values": [
+                {
+                    "name": "PING",
+                    "id": 1
+                },
+                {
+                    "name": "PONG",
+                    "id": 2
+                },
+                {
+                    "name": "USER_LOG_IN_REQUEST",
+                    "id": 10
+                },
+                {
+                    "name": "USER_LOG_IN_REPLY",
+                    "id": 11
+                },
+                {
+                    "name": "USER_CREATE_REQUEST",
+                    "id": 12
+                },
+                {
+                    "name": "USER_CREATE_REPLY",
+                    "id": 13
+                },
+                {
+                    "name": "USER_CHANGE_PASS_REQUEST",
+                    "id": 14
+                },
+                {
+                    "name": "USER_CHANGE_PASS_REPLY",
+                    "id": 15
+                },
+                {
+                    "name": "HERO_UPGRADE_REQUEST",
+                    "id": 16
+                },
+                {
+                    "name": "HERO_UPGRADE_REPLY",
+                    "id": 17
+                },
+                {
+                    "name": "GENERIC_ERROR",
+                    "id": 29
+                }
+            ],
+            "options": {}
+        },
+        {
+            "name": "Result",
+            "values": [
+                {
+                    "name": "OK",
+                    "id": 0
+                },
+                {
+                    "name": "RETRY",
+                    "id": 1
+                },
+                {
+                    "name": "OLD_ACCOUNT",
+                    "id": 2
+                },
+                {
+                    "name": "WRONG_EMAIL",
+                    "id": 3
+                },
+                {
+                    "name": "WRONG_PASS",
+                    "id": 4
+                },
+                {
+                    "name": "BLOCKED",
+                    "id": 11
+                }
+            ],
+            "options": {}
+        },
+        {
+            "name": "DistributionChannel",
+            "values": [
+                {
+                    "name": "APPLE_STORE",
+                    "id": 0
+                },
+                {
+                    "name": "SDK_91_IOS",
+                    "id": 1
+                },
+                {
+                    "name": "SDK_91_ANDROID",
+                    "id": 2
+                },
+                {
+                    "name": "SDK_TB_IOS",
+                    "id": 3
+                },
+                {
+                    "name": "SDK_PP_IOS",
+                    "id": 4
+                },
+                {
+                    "name": "SDK_KY_IOS",
+                    "id": 5
+                }
+            ],
+            "options": {}
+        }
+    ],
+    "imports": [],
+    "options": {},
+    "services": []
+}

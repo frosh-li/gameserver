@@ -1,0 +1,24 @@
+{
+  "name": "game-d",
+  "version": "1.0.0",
+  "description": "公司项目D",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+	"bench":"node socketServer/benck.js"
+  },
+  "author": "lijunliang",
+  "license": "MIT",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "cli-color": "^0.3.2",
+    "color": "^0.7.3",
+    "hiredis": "^0.1.17",
+    "mongodb": "^1.4.26",
+    "mongoose": "^3.8.21",
+    "protobufjs": "^3.8.2",
+    "redis": "^0.12.1",
+    "uuid": "^2.0.1"
+  }
+}

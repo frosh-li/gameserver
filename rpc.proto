@@ -1,0 +1,137 @@
+package rpc;
+
+message TransUnit {
+  required Command cmd = 1;
+  optional bytes data = 2;
+  optional int32 flags = 3;
+  optional uint32 usn = 4; // Unit Serial Number // 服务器在reply中会重复客户端发过来的request的usn
+}
+
+enum Command {
+  PING = 1;
+  PONG = 2;
+  USER_LOG_IN_REQUEST = 10;
+  USER_LOG_IN_REPLY = 11;
+  USER_CREATE_REQUEST = 12;
+  USER_CREATE_REPLY = 13;
+  USER_CHANGE_PASS_REQUEST = 14;
+  USER_CHANGE_PASS_REPLY = 15;
+  HERO_UPGRADE_REQUEST = 16;
+  HERO_UPGRADE_REPLY = 17;
+  GENERIC_ERROR = 29;
+}
+
+// 一个 User 在各个 game服务器 上有不同的 Account
+
+// user 服务器
+message UserLogInRequest {
+  optional string email = 1;
+  optional string pass = 2;
+  required string device_id = 3;
+  optional string unique_id = 4;
+  required DistributionChannel channel = 5;
+  required string client_version = 6;
+}
+
+message UserLogInReply {
+  enum Result {
+    OK = 0;
+    RETRY = 1;
+    NO_ACCOUNT = 2;
+    WRONG_PASS = 3;
+    BLOCKED = 11;
+    BINDED = 12; // 已经绑定，需要邮箱、密码登录
+  }
+  required Result result = 1;
+  optional AccountInfo account = 2;
+  optional uint32 registered_days = 4;
+  optional string data_version = 5;
+}
+
+message UserCreateRequest {
+  required string email = 1;
+  required string pass = 2;
+  required DistributionChannel channel = 3;
+  required string client_version = 4;
+  required string device_id = 5;
+}
+
+enum Result {
+  OK = 0;
+  RETRY = 1;
+  OLD_ACCOUNT = 2;
+  WRONG_EMAIL = 3;
+  WRONG_PASS = 4;
+  BLOCKED = 11;
+}
+
+message UserCreateReply {
+  required Result result = 1;
+}
+
+message UserChangePassRequest {
+  required string email = 1;
+  required string pass = 2;
+  required string pass_new = 3;
+}
+
+message UserChangePassReply {
+  enum Result {
+    OK = 0;
+    RETRY = 1;
+    NO_ACCOUNT = 2;
+    WRONG_PASS = 3;
+    WRONG_OLD_PASS = 4;
+    BLOCKED = 11;
+  }
+  required Result result = 1;
+}
+
+// game 服务器
+enum DistributionChannel {
+  APPLE_STORE = 0;
+  SDK_91_IOS = 1;
+  SDK_91_ANDROID = 2;
+  SDK_TB_IOS = 3;
+  SDK_PP_IOS = 4;
+  SDK_KY_IOS = 5;
+}
+
+
+
+message GenericError {
+  enum Error {
+    ONLINE_OTHER_LOCATION = 1; // 玩家已从别处登录
+  }
+  required Error error = 1;
+}
+
+message Countdown {
+  required int32 left_seconds = 1; // 如为 0 则表示已达到最大值
+  required int32 value = 2;
+}
+
+message AccountInfo {
+  optional double id = 1;
+  optional string name = 2;
+  optional int32 diamond = 5;
+  optional int32 blue_cost = 6;
+  optional int32 yellow_cost = 7;
+  optional int32 taskProcess = 8;
+  optional Countdown energy = 9;
+  repeated HeroInfo hero = 10;
+}
+
+message HeroInfo {
+  required double id = 1;
+  required int32 meta = 2;
+  required int32 level = 5;
+}
+
+message HeroUpgradeRequest {
+  required double id = 1;
+}
+
+message HeroUpgradeReply {
+  optional HeroInfo hero = 1;
+}

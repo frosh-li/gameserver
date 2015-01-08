@@ -1,0 +1,6 @@
+message User {
+    required int32 uid = 1;
+    required string name = 2;
+    required string email = 3;
+    required int32 level = 4;
+}
