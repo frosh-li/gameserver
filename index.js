@@ -18,7 +18,7 @@ global.db = require('./db');
 
 dbReady.once('dbReady', function(){
     var server = new Server({
-        port: 9001
+        port: 7707 
     }, handleServerMessage);
     console.log(clc.green('游戏服务器启动成功'));
 });
